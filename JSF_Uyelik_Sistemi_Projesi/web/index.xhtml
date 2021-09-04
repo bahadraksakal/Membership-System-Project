@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Proje Anasayfa</title>      
+    </h:head>
+    <h:body>  
+        <f:view locale="#{userBean.locale}" encoding="UTF-8" >
+        <script src="http://code.jquery.com/jquery-latest.js"/>
+<script> 
+    $(document).ready(function() {
+       $("#form_1\\:kayitPanel").hide();         
+
+       $("#form_0\\:uye_giris_txt").click(function() {
+       $("#form_2\\:Uye_Giris_Panel").animate({"height": "show"}, { duration: 0 });
+       $("#form_1\\:kayitPanel").animate({"height": "hide"}, { duration: 0   });
+        return false;
+      }); 
+
+
+       $("#form_0\\:kayit_ol_txt").click(function() {
+       $("#form_2\\:Uye_Giris_Panel").animate({"height": "hide"}, { duration: 0});
+       $("#form_1\\:kayitPanel").animate({"height": "show"}, { duration: 0 });	
+        return false;
+      });
+       $("#form_0\\:uye_giris_image").click(function() {
+       $("#form_2\\:Uye_Giris_Panel").animate({"height": "show"}, { duration: 0});
+       $("#form_1\\:kayitPanel").animate({"height": "hide"}, { duration: 0 });	
+        return false;
+      });
+       $("#form_0\\:kayit_ol_image").click(function() {
+       $("#form_2\\:Uye_Giris_Panel").animate({"height": "hide"}, { duration: 0 });
+       $("#form_1\\:kayitPanel").animate({"height": "show"}, { duration: 0});	
+        return false;
+      });
+
+     });
+</script>
+            <h:form id="form_0">
+
+                <h:outputStylesheet id="style_sheet" library="css" name="style.css"/>
+                <h:panelGrid id="ust_panel" styleClass="mavi_cerceve_ciz" columns="2"  border="0" width="400px">                    
+                    <h:graphicImage id="kayit_ol_image" library="images" height="40" width="40" name="kayitol.png" />                 
+                    <h:graphicImage id="uye_giris_image" library="images" height="40" width="40" name="giris.png" />
+                    <h:outputText id="kayit_ol_txt" value="Kayıt Ol" />
+                    <h:outputText id="uye_giris_txt" value="Üye Giris" />                   
+                </h:panelGrid>       
+            </h:form>   
+            <h:form id="form_1">
+                <h:panelGrid  id="kayitPanel" columns="3">
+                    
+                    <f:facet name="header" >
+                        <h:graphicImage library="images" name="uyari.png" width="40" height="40" 
+                                        style="align-content: center" rendered="#{userBean.kayit_acilidimi}"/>
+                        <br/>
+                        <h:outputText value="Kayıt Oluşturulamadı Tekrar Deneyiniz" styleClass="hata_mesaj" 
+                                      rendered="#{userBean.kayit_acilidimi}" />                      
+                    </f:facet> 
+                    
+                    <h:outputLabel for="input_username" value="Kullanıcı Adı: "/>
+                    <h:inputText id="input_username" value="#{userBean.ad}"  />
+                    <h:message for="input_username" styleClass="hata_mesaj" />
+
+                    <h:outputLabel for="input_passworld" value="Şifre: "/>
+                    <h:inputText id="input_passworld" value="#{userBean.sifre}"  />
+                    <h:message for="input_passworld" styleClass="hata_mesaj"/>
+
+                    <h:outputLabel for="input_mail" value="Mail: "/>
+                    <h:inputText id="input_mail" value="#{userBean.mail}"  />
+                    <h:message for="input_mail" styleClass="hata_mesaj"/>
+
+                    <h:commandButton id="kayit_ac_button" value="Üye Ol" action="#{userBean.kayit_Ac()}"/>
+                </h:panelGrid>
+            </h:form>
+            <h:form id="form_2">
+                <h:panelGrid  id="Uye_Giris_Panel" columns="3">
+                    
+                    <f:facet name="header" >
+                        <h:graphicImage library="images" name="uyari.png" width="40" height="40" 
+                                        style="align-content: center" rendered="#{userBean.renderFlag}"/>
+                        <br/>
+                        <h:outputText value="Hatalı Kullanıcı Adı Veya Şifre Girdiniz" styleClass="hata_mesaj" 
+                                      rendered="#{userBean.renderFlag}"/>                      
+                    </f:facet> 
+                    
+                    <h:outputLabel for="input_username_giris" value="Kullanıcı Adı: " />
+                    <h:inputText id="input_username_giris" value="#{userBean.ad}"  />
+                    <h:message for="input_username_giris" styleClass="hata_mesaj" />
+
+                    <h:outputLabel for="input_passworld_giris" value="Şifre: "/>
+                    <h:inputText id="input_passworld_giris" value="#{userBean.sifre}" />
+                    <h:message for="input_passworld_giris" styleClass="hata_mesaj"/>
+
+                    <h:commandButton id="uyegirisi" value="Giriş_Yap" action="#{userBean.girisYap()}"  />
+                </h:panelGrid>                  
+            </h:form>
+            <h:form id="deneme">
+                <h:commandButton value="admin panel" action="adminPanel" />
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+

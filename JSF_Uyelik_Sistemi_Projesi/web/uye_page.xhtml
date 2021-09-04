@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Logined</title>
+    </h:head>
+    <h:body>
+        <f:view locale="#{userBean.locale}" encoding="UTF-8">
+            <h:form>
+                <div class="card">
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <p:graphicImage library="images" name="user_image.png" height="%100" width="%100" />
+                        </f:facet>
+
+                        <h:outputText value="Name:"/>
+                        <h:outputText value="#{userBean.ad}"/>
+
+                        <h:outputText value="Email:"/>
+                        <h:outputText value="#{userBean.mail}"/>
+
+                        <h:outputText value="İd"/>
+                        <h:outputText value="#{userBean.ID}"/>
+
+                        <f:facet name="footer">
+                            <p:button value="Çıkış" styleClass="rounded-button ui-button-warning" 
+                                             outcome="#{userBean.closeAll()}" />
+                        </f:facet>
+                    </p:panelGrid>
+                </div>            
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

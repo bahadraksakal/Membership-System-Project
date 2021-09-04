@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Administrator</title>
+    </h:head>
+    <h:body>
+        <f:view locale="#{userBean.locale}" encoding="UTF-8" >
+        <div class="card">
+        <p:panelGrid columns="2" >
+            <h:form id="admin_panel">
+               <p:messages id="messages_2"/>
+               <p:dataTable id="users_data_table" var="user" value="#{userBean.users}" scrollable="true" scrollHeight="250"
+                            style="align-items: baseline" size="small" >
+                      <p:column headerText="Kullanıcı Adı" footerText="Kullanıcı Adı">
+                          <h:outputText value="#{user.ad}"/>
+                      </p:column>
+                      <p:column headerText="Şifre" footerText="Şifre">
+                          <h:outputText value="#{user.sifre}"/>
+                      </p:column>
+                      <p:column headerText="Email" footerText="Representative">
+                          <h:outputText value="#{user.mail}"/>
+                      </p:column>
+                      <p:column headerText="ID" footerText="ID">
+                          <span class="customer-badge" >#{user.ID}</span>
+                      </p:column>
+                   <f:facet name="footer">
+                           <p:commandButton value="Üye Listesini Yenile" styleClass="rounded-button ui-button-success"
+                                            action="#{userBean.setUsers()}" style="align-self: center">
+                               <f:ajax render="users_data_table"/>
+                           </p:commandButton>
+                   </f:facet>
+                  </p:dataTable>
+               </h:form>
+                <h:form>
+                    <p:panelGrid columns="2" >
+                        <h:outputLabel for="@next" value="Kullanıcı Adı"/>
+                        <p:inputText value="#{userBean.ad}" required="true"/>
+
+                        <p:outputLabel for="@next" value="Şifre:"/>
+                        <p:inputText  value="#{userBean.sifre}" required="true"/>
+
+                        <p:outputLabel for="@next" value="Email"/>
+                        <p:inputText  value="#{userBean.mail}" required="true"/>
+
+                        <p:outputLabel for="@next" value="ID"/>
+                        <p:spinner  value="#{userBean.ID}" required="true"/>
+                        <p:column>
+                            <p:commandButton value="Değiştir" styleClass="p-mt-3" action="#{userBean.uyeDuzenle()}"/>
+                          </p:column>
+                            <p:commandButton value="Ekle" styleClass="p-mt-3" action="#{userBean.uyeDuzenle()}"/>
+                        
+                        <p:spacer />
+                    </p:panelGrid>       
+            </h:form>
+            <h:form>
+                    <p:panelGrid columns="2" >                        
+                        <p:outputLabel for="@next" value="Silinecek Üyenin ID"/>
+                        <p:spinner  value="#{userBean.ID}" required="true"/>
+
+                        <p:commandButton value="Üyeyi Sil" styleClass="p-mt-3" action="#{userBean.uyesil()}"/>
+                        <p:spacer />
+                    </p:panelGrid>       
+            </h:form>
+        </p:panelGrid>
+        </div>
+        </f:view>
+    </h:body>
+</html>
+
